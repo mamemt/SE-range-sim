@@ -1,0 +1,5 @@
+{
+  "name": "Tesla Model 3",
+  "battery_capacity_kwh": 60.0,
+  "base_consumption_kwh_per_100km": 14.5
+}
