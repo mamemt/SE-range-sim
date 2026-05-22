@@ -1,13 +1,11 @@
 # Datenformate
 
 Dieses Dokument beschreibt das JSON-Format der Profil-Dateien unter `data/`.
-Es legt den Vertrag zwischen den Beispieldaten und dem späteren Importer-Modul fest.
 
 ## Fahrzeugprofile (`data/vehicles/*.json`)
 
 Ein Fahrzeugprofil beschreibt dauerhafte Eigenschaften eines Elektrofahrzeugs.
-Der aktuelle Ladezustand gehört **nicht** zum Profil, sondern wird zur Fahrtzeit
-vom Benutzer eingegeben.
+Aktueller Ladezustand gehört **nicht** zum Profil, sondern wird vom Benutzer eingegeben.
 
 Eine Datei pro Fahrzeug. Dateiname in `snake_case` (z. B. `tesla_model_3.json`).
 
@@ -40,11 +38,9 @@ Eine Datei pro Fahrzeug. Dateiname in `snake_case` (z. B. `tesla_model_3.json`).
 
 ## Geplante weitere Profile
 
-Analoge Unterordner sind vorgesehen, sobald die zugehörigen Issues bearbeitet
-werden:
+Entsprechene Unterordner sind vorgesehen, sobald die zugehörigen Issues bearbeitet werden:
 
 - `data/routes/*.json` – Streckenprofile (Name, Gesamtdistanz, Segmente, Höhenmeter)
 - `data/weather/*.json` – Wetterprofile (Temperatur, Regen, Windgeschwindigkeit)
 
-Die genauen Felder dieser Profile werden in den jeweiligen Issues festgelegt
-und hier ergänzt.
+
