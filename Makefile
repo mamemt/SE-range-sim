@@ -1,5 +1,5 @@
-range-sim: main.o battery.o menu.o route.o vehicle.o weather.o
-	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o
+range-sim: main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o
+	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o
 
 main.o: src/main.c
 	gcc -Iinclude -c src/main.c
@@ -18,3 +18,6 @@ vehicle.o: src/vehicle.c
 
 weather.o: src/weather.c
 	gcc -Iinclude -c src/weather.c
+
+json_importer.o: src/json_importer.c
+	gcc -Iinclude -c src/json_importer.c
