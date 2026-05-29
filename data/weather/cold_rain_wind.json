@@ -1,0 +1,6 @@
+{
+  "name": "kalt, Regen, Wind",
+  "temperature_celsius": 2.0,
+  "wind_speed_kmh": 45.0,
+  "precipitation_mm_per_h": 10.0
+}
