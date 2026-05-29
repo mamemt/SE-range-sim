@@ -1,0 +1,11 @@
+{
+  "name": "Stuttgart -> Muenchen",
+  "distance_km": 230.0,
+  "elevation_gain_m": 510.0,
+  "share_city_percent": 10,
+  "share_rural_percent": 15,
+  "share_highway_percent": 75,
+  "speed_city_kmh": 30.0,
+  "speed_rural_kmh": 80.0,
+  "speed_highway_kmh": 120.0
+}
