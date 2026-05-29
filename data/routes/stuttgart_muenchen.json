@@ -1,0 +1,8 @@
+{
+  "name": "Stuttgart -> Ulm",
+  "distance_km": 90.0,
+  "elevation_gain_m": 320.0,
+  "share_city_percent": 15,
+  "share_rural_percent": 20,
+  "share_highway_percent": 65
+}
