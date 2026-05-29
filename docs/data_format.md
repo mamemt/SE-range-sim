@@ -9,7 +9,7 @@ Aktueller Ladezustand gehört **nicht** zum Profil, sondern wird vom Benutzer ei
 
 Eine Datei pro Fahrzeug. Dateiname in `snake_case` (z. B. `tesla_model_3.json`).
 
-### Felder
+### Felder Fahrzeugprofile
 
 | Feld                              | Typ    | Einheit       | Pflicht | Beschreibung                            |
 |-----------------------------------|--------|---------------|---------|-----------------------------------------|
@@ -40,7 +40,6 @@ Eine Datei pro Fahrzeug. Dateiname in `snake_case` (z. B. `tesla_model_3.json`).
 
 Ein Streckenprofil beschreibt eine Fahrstrecke als Ganzes.
 Die Aufteilung in Stadt/Land/Autobahn erfolgt über Prozentwerte.
-Durchschnittsgeschwindigkeiten pro Typ sind Modellannahmen im Code, nicht im JSON.
 
 Eine Datei pro Strecke. Dateiname in `snake_case` nach Schema `start_ziel` (z. B. `stuttgart_ulm.json`).
 
@@ -67,7 +66,10 @@ Eine Datei pro Strecke. Dateiname in `snake_case` nach Schema `start_ziel` (z. B
   "elevation_gain_m": 320.0,
   "share_city_percent": 15,
   "share_rural_percent": 20,
-  "share_highway_percent": 65
+  "share_highway_percent": 65,
+  "speed_city_kmh": 30.0,
+  "speed_rural_kmh": 80.0,
+  "speed_highway_kmh": 120.0
 }
 ```
 
@@ -78,8 +80,37 @@ Eine Datei pro Strecke. Dateiname in `snake_case` nach Schema `start_ziel` (z. B
 - Die drei `share_*_percent`-Felder müssen zusammen 100 ergeben.
 - Streckenwerte basieren auf Schätzungen, keine vermessenen Daten.
 
-## Geplante weitere Profile
+## Wetterprofile (`data/weather/*.json`)
 
-Entsprechene Unterordner sind vorgesehen, sobald die zugehörigen Issues bearbeitet werden:
+Ein Wetterprofil beschreibt eine Kombination aus Temperatur, Wind und Niederschlag.
+Es repräsentiert typische Wetterbedingungen für die Reichweitenberechnung.
 
-- `data/weather/*.json` – Wetterprofile (Temperatur, Regen, Windgeschwindigkeit)
+Eine Datei pro Profil. Dateiname in `snake_case` nach Schema `temp_precipitation_wind` (z. B. `warm_dry_calm.json`).
+
+### Felder Wetterprofile
+
+| Feld                     | Typ    | Einheit | Pflicht | Beschreibung                        |
+|--------------------------|--------|---------|---------|-------------------------------------|
+| `name`                   | String | –       | ja      | Anzeigename des Profils             |
+| `temperature_celsius`    | Float  | °C      | ja      | Lufttemperatur                      |
+| `wind_speed_kmh`         | Float  | km/h    | ja      | Windgeschwindigkeit                 |
+| `precipitation_mm_per_h` | Float  | mm/h    | ja      | Niederschlagsmenge                  |
+
+### Beispiel Wetterprofile
+
+```json
+{
+  "name": "warm, trocken, windstill",
+  "temperature_celsius": 20.0,
+  "wind_speed_kmh": 0.0,
+  "precipitation_mm_per_h": 0.0
+}
+```
+
+### Annahmen Wetterprofile
+
+- Wertebereich Temperatur: -10 bis 35°C.
+- Wertebereich Wind: 0 bis 80 km/h.
+- Wertebereich Niederschlag: 0 bis 40 mm/h.
+- Werte basieren auf repräsentativen Bedingungen, keine Messdaten.
+- Die Profile decken einen repräsentativen Grundumfang ab. Sobald die Reichweitenberechnung steht, können weitere Profile ergänzt oder bestehende angepasst werden (z. B. Schnee, Nebel, Extremtemperaturen).
