@@ -55,7 +55,7 @@ void run_main_menu(void) {
         }
 
         if (strcmp(input, "1\n") == 0) {
-            select_vehicle();
+            char* vehicle_file = select_vehicle();
         } else if (strcmp(input, "2\n") == 0) {
             select_route();
         } else if (strcmp(input, "3\n") == 0) {
