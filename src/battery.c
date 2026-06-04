@@ -24,7 +24,7 @@ double enter_battery_level(void) {
             continue;
         }
 
-        // strtod erkennt ungueltige Zeichen; endptr zeigt auf erstes nicht-parstes Zeichen
+        // strtod erkennt ungueltige Zeichen (endptr == input) -> gar keine Zahl gefunden "abc" // (*endptr != '\n') -> Zahl gefolgt von Müll "80abc"
         charge_percent = strtod(input, &endptr);
 
         if (endptr == input || (*endptr != '\n' && *endptr != '\0')) {
