@@ -21,3 +21,9 @@ weather.o: src/weather.c
 
 json_importer.o: src/json_importer.c
 	gcc -Iinclude -c src/json_importer.c
+
+test: test_json_importer
+	./test_json_importer
+
+test_json_importer: tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
+	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_json_importer tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
