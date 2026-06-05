@@ -1,6 +1,6 @@
 #ifndef ROUTE_H
 #define ROUTE_H
 
-void select_route(void);
+char* select_route(void);
 
 #endif
