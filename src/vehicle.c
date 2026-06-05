@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "vehicle.h"
+#include "menu.h"
 
 char* select_vehicle(void) {
     int input;
@@ -12,17 +13,20 @@ char* select_vehicle(void) {
     printf("3 - VW ID.3\n");
 
     while (1) {
-        scanf("%d", &input);
+        if (scanf("%d", &input) != 1) {
+            clear_input_buffer();
+            printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");
+            continue;}
 
         if (input == 1) {
             printf("Du hast 'Renault Zoe' ausgewaehlt.\n");
-            return "Renault Zoe";} 
+            return "renault_zoe.json";} 
         else if (input == 2) {
             printf("Du hast 'Tesla Model 3' ausgewaehlt.\n");
-            return "Tesla Model 3";} 
+            return "tesla_model_3.json";} 
         else if (input == 3) {
             printf("Du hast 'VW ID.3' ausgewaehlt.\n");
-            return "VW ID.3";} 
+            return "vw_id3.json";} 
         else {
             printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");}
     }
