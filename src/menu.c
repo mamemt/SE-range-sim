@@ -61,7 +61,8 @@ void run_main_menu(void) {
         } else if (strcmp(input, "3\n") == 0) {
             select_weather_profile();
         } else if (strcmp(input, "4\n") == 0) {
-            enter_battery_level();
+            double battery_charge_percent = enter_battery_level();
+            printf("Aktueller Ladezustand: %.1f%%\n", battery_charge_percent);
         } else if (strcmp(input, "5\n") == 0) {
             printf("range-sim beendet\n");
             return;
