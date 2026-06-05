@@ -59,7 +59,7 @@ void run_main_menu(void) {
         } else if (strcmp(input, "2\n") == 0) {
             char* route_file = select_route();
         } else if (strcmp(input, "3\n") == 0) {
-            select_weather_profile();
+            char* weather_file = select_weather_profile();
         } else if (strcmp(input, "4\n") == 0) {
             double battery_charge_percent = enter_battery_level();
             printf("Aktueller Ladezustand: %.1f%%\n", battery_charge_percent);
