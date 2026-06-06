@@ -8,7 +8,7 @@
 
 #define INPUT_BUFFER_SIZE 16
 
-static void clear_input_buffer(void) {
+void clear_input_buffer(void) {
     while (getchar() != '\n');
 }
 
