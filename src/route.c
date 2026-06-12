@@ -19,10 +19,10 @@ char* select_route(void) {
 
         if (input == 1) {
             printf("Du hast 'stuttgart_muenchen' ausgewaehlt.\n");
-            return "stuttgart_muenchen.json";} 
+            return "data/routes/stuttgart_muenchen.json";} 
         else if (input == 2) {
             printf("Du hast 'stuttgart_ulm' ausgewaehlt.\n");
-            return "stuttgart_ulm.json";} 
+            return "data/routes/stuttgart_ulm.json";} 
         else {
             printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");}
     }

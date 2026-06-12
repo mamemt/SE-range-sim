@@ -5,6 +5,7 @@
 #include "route.h"
 #include "weather.h"
 #include "battery.h"
+#include "calculation.h"
 
 #define INPUT_BUFFER_SIZE 16
 
@@ -18,7 +19,8 @@ static void show_menu(void) {
     printf("2 - Strecke auswaehlen\n");
     printf("3 - Wetterprofil auswaehlen\n");
     printf("4 - Ladezustand eingeben\n");
-    printf("5 - Beenden\n");
+    printf("5 - Berechnung starten\n");
+    printf("6 - Beenden\n");
     printf("-----------------------\n");
 }
 
@@ -45,6 +47,11 @@ int wait_for_start_command(void) {
 
 void run_main_menu(void) {
     char input[INPUT_BUFFER_SIZE];
+    char* vehicle_file = NULL;
+    char* route_file = NULL;
+    char* weather_file = NULL;
+    double battery_charge_percent = 0.0;
+    double is_route_possible = 0.0;
 
     while (1) {
         show_menu();
@@ -55,18 +62,26 @@ void run_main_menu(void) {
         }
 
         if (strcmp(input, "1\n") == 0) {
-            char* vehicle_file = select_vehicle();
+            vehicle_file = select_vehicle();
         } else if (strcmp(input, "2\n") == 0) {
-            char* route_file = select_route();
+            route_file = select_route();
         } else if (strcmp(input, "3\n") == 0) {
-            char* weather_file = select_weather_profile();
+            weather_file = select_weather_profile();
         } else if (strcmp(input, "4\n") == 0) {
-            double battery_charge_percent = enter_battery_level();
+            battery_charge_percent = enter_battery_level();
             printf("Aktueller Ladezustand: %.1f%%\n", battery_charge_percent);
         } else if (strcmp(input, "5\n") == 0) {
-            printf("range-sim beendet\n");
+         is_route_possible = calculation(vehicle_file, route_file, weather_file, battery_charge_percent);
+            if (is_route_possible) {
+                printf("Die Strecke ist mit dem aktuellen Ladezustand möglich.\n");
+            } else {
+                printf("Die Strecke ist mit dem aktuellen Ladezustand nicht möglich.\n");
+            }
             return;
-        } else {
+        } else if (strcmp(input, "6\n") == 0) {
+            printf("range-sim beendet\n");
+        }
+         else {
             printf("Falsche Eingabe. Bitte eine Zahl zwischen 1 und 5 eingeben.\n");
         }
     }
