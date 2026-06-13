@@ -20,13 +20,13 @@ char* select_vehicle(void) {
 
         if (input == 1) {
             printf("Du hast 'Renault Zoe' ausgewaehlt.\n");
-            return "renault_zoe.json";} 
+            return "data/vehicles/renault_zoe.json";} 
         else if (input == 2) {
             printf("Du hast 'Tesla Model 3' ausgewaehlt.\n");
-            return "tesla_model_3.json";} 
+            return "data/vehicles/tesla_model_3.json";} 
         else if (input == 3) {
             printf("Du hast 'VW ID.3' ausgewaehlt.\n");
-            return "vw_id3.json";} 
+            return "data/vehicles/vw_id3.json";} 
         else {
             printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");}
     }
