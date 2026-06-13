@@ -3,13 +3,24 @@
 #include "calculation.h"
 #include "json_importer.h"
 
+#define VEHICLE_DIR "data/vehicles/"
+#define ROUTE_DIR   "data/routes/"
+#define WEATHER_DIR "data/weather/"
+
 double calculation(char* vehicle_file, char* route_file, char* weather_file, double battery_level) {
+    char vehicle_path[256];
+    char route_path[256];
+    char weather_path[256];
+    snprintf(vehicle_path, sizeof(vehicle_path), "%s%s", VEHICLE_DIR, vehicle_file);
+    snprintf(route_path,   sizeof(route_path),   "%s%s", ROUTE_DIR,   route_file);
+    snprintf(weather_path, sizeof(weather_path), "%s%s", WEATHER_DIR, weather_file);
+
     char vehicle_json[1000];
     char route_json[1000];
     char weather_json[1000];
-    read_file_to_buffer(vehicle_file, vehicle_json, sizeof(vehicle_json));
-    read_file_to_buffer(route_file, route_json, sizeof(route_json));
-    read_file_to_buffer(weather_file, weather_json, sizeof(weather_json));
+    read_file_to_buffer(vehicle_path, vehicle_json, sizeof(vehicle_json));
+    read_file_to_buffer(route_path,   route_json,   sizeof(route_json));
+    read_file_to_buffer(weather_path, weather_json, sizeof(weather_json));
     //auslesen Fahrzeugdaten
     double battery_capacity = 0.0;
     double base_consumption_kwh_per_100km = 0.0;
