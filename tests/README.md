@@ -34,11 +34,18 @@ Alle Tests bauen und ausführen (aus dem Projekt-Root):
 make test
 ```
 
-Einzelnes Test-Modul bauen und ausführen:
+Einzelnes Test-Modul bauen und ausführen, z. B.:
 
 ```
 make test_json_importer
 ./test_json_importer
+```
+
+oder
+
+```
+make test_calculation
+./test_calculation
 ```
 
 Wichtig: Aus dem Projekt-Root starten, weil Tests JSON-Dateien über
