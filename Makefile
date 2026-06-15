@@ -25,8 +25,12 @@ json_importer.o: src/json_importer.c
 calculation.o: src/calculation.c
 	gcc -Iinclude -c src/calculation.c
 
-test: test_json_importer
+test: test_json_importer test_calculation
 	./test_json_importer
+	./test_calculation
 
 test_json_importer: tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
 	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_json_importer tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
+
+test_calculation: tests/test_calculation.c src/calculation.c src/json_importer.c tests/unity/unity.c
+	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_calculation tests/test_calculation.c src/calculation.c src/json_importer.c tests/unity/unity.c
