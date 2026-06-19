@@ -5,7 +5,7 @@
 char* select_route(void) {
     int input;
 
-    printf("Du hast 'Strecke auswaehlen' gewaehlt.\n");
+    //printf("Du hast 'Strecke auswaehlen' gewaehlt.\n");
 
     printf("Waehle zwischen folgenden Strecken:\n");
     printf("1 - stuttgart_muenchen\n");
@@ -18,10 +18,10 @@ char* select_route(void) {
             continue;}
 
         if (input == 1) {
-            printf("Du hast 'stuttgart_muenchen' ausgewaehlt.\n");
+            printf("Du hast 'stuttgart_muenchen' ausgewaehlt.\n\n");
             return "data/routes/stuttgart_muenchen.json";} 
         else if (input == 2) {
-            printf("Du hast 'stuttgart_ulm' ausgewaehlt.\n");
+            printf("Du hast 'stuttgart_ulm' ausgewaehlt.\n\n");
             return "data/routes/stuttgart_ulm.json";} 
         else {
             printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");}

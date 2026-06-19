@@ -37,7 +37,7 @@ double enter_battery_level(void) {
             continue;
         }
 
-        printf("Ladezustand gespeichert: %.1f%%\n", charge_percent);
+        printf("Ladezustand gespeichert: %.1f%%\n\n", charge_percent);
         return charge_percent;
     }
 }
