@@ -20,6 +20,8 @@ char* select_weather_profile(void) {
             printf("Ungueltige Eingabe. Bitte erneut versuchen.\n");
             continue;}
 
+        clear_input_buffer();
+
         if (input == 1) {
             printf("Du hast 'kalt, starker Regen/Sturm' ausgewaehlt.\n\n");
             return "data/weather/cold_heavy_rain_storm.json";} 
