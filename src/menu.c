@@ -5,7 +5,7 @@
 #include "route.h"
 #include "weather.h"
 #include "battery.h"
-#include "calculation.h"
+#include "feasibility.h"
 
 #define INPUT_BUFFER_SIZE 16
 
@@ -13,7 +13,7 @@ void clear_input_buffer(void) {
     while (getchar() != '\n');
 }
 
-static void show_menu(void) {
+/*static void show_menu(void) {
     printf("\n------ range-sim ------\n");
     printf("1 - Fahrzeug auswaehlen\n");
     printf("2 - Strecke auswaehlen\n");
@@ -22,7 +22,7 @@ static void show_menu(void) {
     printf("5 - Berechnung starten\n");
     printf("6 - Beenden\n");
     printf("-----------------------\n");
-}
+}*/
 
 int wait_for_start_command(void) {
     char input[INPUT_BUFFER_SIZE];
@@ -34,7 +34,7 @@ int wait_for_start_command(void) {
             clear_input_buffer();
         }
         if (strcmp(input, "start\n") == 0) {
-            printf("range-sim gestartet\n");
+            printf("range-sim gestartet\n\n");
             return 0;
         }
         if (strcmp(input, "exit\n") == 0) {
@@ -54,35 +54,33 @@ void run_main_menu(void) {
     double is_route_possible = 0.0;
 
     while (1) {
-        show_menu();
-        printf("Auswahl: ");
-        fgets(input, sizeof(input), stdin);
-        if (strchr(input, '\n') == NULL) {
-            clear_input_buffer();
-        }
-
-        if (strcmp(input, "1\n") == 0) {
+        //show_menu();
+        //printf("Auswahl: ");
+        //fgets(input, sizeof(input), stdin);
+        //if (strchr(input, '\n') == NULL) {
+        //    clear_input_buffer();}
+        //printf("Wähle dein Fahrzeug: ")
+        //if (strcmp(input, "1\n") == 0) {
             vehicle_file = select_vehicle();
-        } else if (strcmp(input, "2\n") == 0) {
+        //} else if (strcmp(input, "2\n") == 0) {
             route_file = select_route();
-        } else if (strcmp(input, "3\n") == 0) {
+        //} else if (strcmp(input, "3\n") == 0) {
             weather_file = select_weather_profile();
-        } else if (strcmp(input, "4\n") == 0) {
+        //} else if (strcmp(input, "4\n") == 0) {
             battery_charge_percent = enter_battery_level();
-            printf("Aktueller Ladezustand: %.1f%%\n", battery_charge_percent);
-        } else if (strcmp(input, "5\n") == 0) {
-         is_route_possible = calculation(vehicle_file, route_file, weather_file, battery_charge_percent);
+        //} else if (strcmp(input, "5\n") == 0) {
+         is_route_possible = calculate_feasibility(vehicle_file, route_file, weather_file, battery_charge_percent);
             if (is_route_possible) {
                 printf("Die Strecke ist mit dem aktuellen Ladezustand möglich.\n");
             } else {
                 printf("Die Strecke ist mit dem aktuellen Ladezustand nicht möglich.\n");
             }
             return;
-        } else if (strcmp(input, "6\n") == 0) {
-            printf("range-sim beendet\n");
-        }
-         else {
-            printf("Falsche Eingabe. Bitte eine Zahl zwischen 1 und 5 eingeben.\n");
-        }
+        //} else if (strcmp(input, "6\n") == 0) {
+        //    printf("range-sim beendet\n");
+        //}
+        // else {
+        //    printf("Falsche Eingabe. Bitte eine Zahl zwischen 1 und 5 eingeben.\n");
+        //}
     }
 }
