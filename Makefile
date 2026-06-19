@@ -1,5 +1,5 @@
-range-sim: main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o calculation.o
-	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o calculation.o
+range-sim: main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o
+	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o
 
 main.o: src/main.c
 	gcc -Iinclude -c src/main.c
@@ -22,15 +22,15 @@ weather.o: src/weather.c
 json_importer.o: src/json_importer.c
 	gcc -Iinclude -c src/json_importer.c
 
-calculation.o: src/calculation.c
-	gcc -Iinclude -c src/calculation.c
+feasibility.o: src/feasibility.c
+	gcc -Iinclude -c src/feasibility.c
 
-test: test_json_importer test_calculation
+test: test_json_importer test_feasibility
 	./test_json_importer
-	./test_calculation
+	./test_feasibility
 
 test_json_importer: tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
 	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_json_importer tests/test_json_importer.c src/json_importer.c tests/unity/unity.c
 
-test_calculation: tests/test_calculation.c src/calculation.c src/json_importer.c tests/unity/unity.c
-	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_calculation tests/test_calculation.c src/calculation.c src/json_importer.c tests/unity/unity.c
+test_feasibility: tests/test_feasibility.c src/feasibility.c src/json_importer.c tests/unity/unity.c
+	gcc -Iinclude -Itests/unity -DUNITY_INCLUDE_DOUBLE -o test_feasibility tests/test_feasibility.c src/feasibility.c src/json_importer.c tests/unity/unity.c

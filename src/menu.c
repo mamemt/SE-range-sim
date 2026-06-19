@@ -5,7 +5,7 @@
 #include "route.h"
 #include "weather.h"
 #include "battery.h"
-#include "calculation.h"
+#include "feasibility.h"
 
 #define INPUT_BUFFER_SIZE 16
 
@@ -69,7 +69,7 @@ void run_main_menu(void) {
         //} else if (strcmp(input, "4\n") == 0) {
             battery_charge_percent = enter_battery_level();
         //} else if (strcmp(input, "5\n") == 0) {
-         is_route_possible = calculation(vehicle_file, route_file, weather_file, battery_charge_percent);
+         is_route_possible = calculate_feasibility(vehicle_file, route_file, weather_file, battery_charge_percent);
             if (is_route_possible) {
                 printf("Die Strecke ist mit dem aktuellen Ladezustand möglich.\n");
             } else {
