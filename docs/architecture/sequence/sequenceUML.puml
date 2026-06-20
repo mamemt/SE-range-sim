@@ -1,0 +1,81 @@
+@startuml
+title Reichweitenberechnung - Hauptablauf
+
+actor Benutzer
+
+participant main
+participant menu
+participant vehicle
+participant route
+participant weather
+participant battery
+participant feasibility
+participant json_importer
+
+Benutzer -> main : Programm starten
+activate main
+
+main -> menu : wait_for_start_command()
+activate menu
+menu -> Benutzer : Eingabe (start/exit)?
+Benutzer -> menu : "start"
+menu --> main : 0 (OK)
+deactivate menu
+
+main -> menu : run_main_menu()
+activate menu
+
+menu -> vehicle : select_vehicle()
+activate vehicle
+vehicle -> Benutzer : Fahrzeug waehlen
+Benutzer -> vehicle : Auswahl
+vehicle --> menu : Pfad zum Fahrzeug-JSON
+deactivate vehicle
+
+menu -> route : select_route()
+activate route
+route -> Benutzer : Strecke waehlen
+Benutzer -> route : Auswahl
+route --> menu: Pfad zur Strecken-JSON
+deactivate route
+
+menu -> weather : select_weather_profile()
+activate weather
+weather -> Benutzer : Wetterprofil waehlen
+Benutzer -> weather : Auswahl
+weather --> menu : Pfad zur Wetter-JSON
+deactivate weather
+
+menu -> battery : enter_battery_level()
+activate battery
+battery -> Benutzer : Ladezustand eingeben
+Benutzer -> battery : Prozentwert
+battery --> menu : Ladezustand
+deactivate battery
+
+menu -> feasibility : calculate_feasibility(...)
+activate feasibility
+
+loop fuer jede Profil-Datei
+    feasibility -> json_importer : read_file_to_buffer(...)
+    activate json_importer
+    json_importer --> feasibility: OK
+    deactivate json_importer
+end
+
+loop fuer jedes Feld
+   feasibility -> json_importer : find_double_field(...)
+   activate json_importer
+   json_importer --> feasibility : Wert
+   deactivate json_importer
+end
+
+feasibility --> menu : 1.0 (moeglich) oder 0.0 (nicht moeglich)
+deactivate feasibility
+
+menu -> Benutzer : Ergebnis anzeigen
+deactivate menu
+
+main --> Benutzer : Programm-Ende
+deactivate main
+@enduml

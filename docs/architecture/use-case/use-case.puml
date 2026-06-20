@@ -1,0 +1,26 @@
+@startuml usecase
+title Use-Case Diagramm - range-sim
+
+left to right direction
+
+actor Benutzer
+
+rectangle "range-sim" {
+    usecase "Programm starten" as UC1
+    usecase "Reichweite berechnen" as UC2
+    usecase "Fahrzeug waehlen" as UC3
+    usecase "Strecke waehlen" as UC4
+    usecase "Wetterprofil waehlen" as UC5
+    usecase "Ladezustand eingeben" as UC6
+}
+
+Benutzer --> UC1
+
+UC2 .> UC1 : <<extend>>
+
+UC2 ..> UC3 : <<include>>
+UC2 ..> UC4 : <<include>>
+UC2 ..> UC5 : <<include>>
+UC2 ..> UC6 : <<include>>
+
+@enduml
