@@ -20,3 +20,8 @@
 - **Werkzeug:** Claude Code (Opus 4.7)
 - **Wofür:** Über mögliche Test Frameworks abgewogen, unity ausgewählt. Wichtigste Prinzipien und grundsätzlichen Syntax erklären lassen. Erklären lassen, wie manueller Test für Framework umgebaut werden kann. Namen für Testfunktionen nach unity Vorgabe erstellen lassen. Makefile um `test`- und `test_json_importer`-Target ergänzt.
 - **Geprüft:** Code manuell angepasst und verstanden, alte Tests in Framework-Form umgesetzt. `make test` lokal ausgeführt, 10 Tests grün.
+
+### 2026-06-20 – UML Diagramme unter docs/architecture - Gabriel, Kvesic
+- **Werkzeug:** Claude Code (Opus 4.7)
+- **Wofür:** UML-Sequenzdiagramm-Konzept erklären lassen. Aufrufkette des Hauptablaufs gemeinsam durchgegangen. PlantUML-Syntax für Sequenzdiagramme erklären lassen und Rohgerüst als Vorlage erhalten.
+- **Geprüft:** Diagramm manuell abgetippt, angepasst und über plantuml.com gerendert. Inhalt mit Quellcode in `src/menu.c`, `src/feasibility.c` und den Auswahl-Modulen abgeglichen.

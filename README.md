@@ -4,6 +4,15 @@
 
 Bewertet eine geplante Elektrofahrzeug-Fahrt anhand von Fahrzeugdaten, Streckenprofil und Wetterdaten. Zeigt, ob die Fahrt mit dem aktuellen Ladezustand möglich ist.
 
+## Architektur
+
+Architekturdiagramme liegen unter [docs/architecture/](docs/architecture/):
+
+- [Use-Case-Diagramm](docs/architecture/use-case/use-caseUML.svg) – Überblick, was der Benutzer mit dem System tun kann
+- [Sequenzdiagramm](docs/architecture/sequence/sequenceUML.svg) – Aufrufkette des Hauptablaufs (Programm starten → Eingaben → Berechnung → Ergebnis)
+
+Die `.puml`-Quelldateien können mit [PlantUML](https://www.plantuml.com/plantuml/uml) bearbeitet und neu gerendert werden.
+
 ## Buildanleitung
 
 Voraussetzung: `gcc` und `make` müssen installiert sein.
