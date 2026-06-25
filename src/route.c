@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "route.h"
-#include "menu.h"
+#include "input.h"
 
 char* select_route(void) {
     int input;

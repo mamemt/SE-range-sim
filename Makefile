@@ -1,5 +1,5 @@
-range-sim: main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o
-	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o
+range-sim: main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o input.o
+	gcc -o range-sim main.o battery.o menu.o route.o vehicle.o weather.o json_importer.o feasibility.o input.o
 
 main.o: src/main.c
 	gcc -Iinclude -c src/main.c
@@ -24,6 +24,9 @@ json_importer.o: src/json_importer.c
 
 feasibility.o: src/feasibility.c
 	gcc -Iinclude -c src/feasibility.c
+
+input.o: src/input.c
+	gcc -Iinclude -c src/input.c
 
 test: test_json_importer test_feasibility
 	./test_json_importer

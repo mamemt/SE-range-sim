@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "vehicle.h"
-#include "menu.h"
+#include "input.h"
 
 char* select_vehicle(void) {
     int input;

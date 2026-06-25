@@ -2,12 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "battery.h"
+#include "input.h"
 
 #define INPUT_BUFFER_SIZE 16
-
-static void clear_input_buffer(void) {
-    while (getchar() != '\n');
-}
 
 double enter_battery_level(void) {
     char input[INPUT_BUFFER_SIZE];
