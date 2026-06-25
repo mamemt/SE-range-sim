@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "menu.h"
+#include "input.h"
 #include "vehicle.h"
 #include "route.h"
 #include "weather.h"
@@ -8,10 +9,6 @@
 #include "feasibility.h"
 
 #define INPUT_BUFFER_SIZE 16
-
-void clear_input_buffer(void) {
-    while (getchar() != '\n');
-}
 
 /*static void show_menu(void) {
     printf("\n------ range-sim ------\n");

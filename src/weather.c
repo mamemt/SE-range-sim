@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "weather.h"
-#include "menu.h"
+#include "input.h"
 
 char* select_weather_profile(void) {
     int input;
