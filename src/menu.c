@@ -38,19 +38,22 @@ void run_main_menu(void) {
     char* route_file = NULL;
     char* weather_file = NULL;
     double battery_charge_percent = 0.0;
-    double is_route_possible = 0.0;
+    double remaining_battery_percent = 0.0;
 
     while (1) {
             vehicle_file = select_vehicle();
             route_file = select_route();
             weather_file = select_weather_profile();
             battery_charge_percent = enter_battery_level();
-         is_route_possible = calculate_feasibility(vehicle_file, route_file, weather_file, battery_charge_percent);
-            if (is_route_possible) {
+            remaining_battery_percent = calculate_feasibility(vehicle_file, route_file, weather_file, battery_charge_percent);
+            if (remaining_battery_percent >= 0) {
                 printf("Die Strecke ist mit dem aktuellen Ladezustand möglich.\n");
+                printf("Verbleibender Ladezustand nach der Strecke: %.2f%%\n", remaining_battery_percent);
             } else {
                 printf("Die Strecke ist mit dem aktuellen Ladezustand nicht möglich.\n");
+                printf("Es fehlen: %.2f%%\n", -remaining_battery_percent);
+                printf("Bitte erhöhen Sie für die Fahrt den Ladezustand auf %.2f%%\n", battery_charge_percent - remaining_battery_percent);
             }
             return;
+        }
     }
-}
