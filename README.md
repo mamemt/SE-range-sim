@@ -71,4 +71,5 @@ Ladezustand gespeichert: 80.0%
 
 Geschätzter Verbrauch: 14.90 kWh
 Die Strecke ist mit dem aktuellen Ladezustand möglich.
+Verbleibender Ladezustand nach der Strecke: 55.17%
 ```
