@@ -70,10 +70,14 @@ loop fuer jedes Feld
    deactivate json_importer
 end
 
-feasibility --> menu : 1.0 (moeglich) oder 0.0 (nicht moeglich)
+feasibility --> menu : verbleibender Ladezustand in %
 deactivate feasibility
 
-menu -> Benutzer : Ergebnis anzeigen
+alt verbleibender Ladezustand >= 0
+    menu -> Benutzer : Strecke moeglich, Reserve in %
+else verbleibender Ladezustand < 0
+    menu -> Benutzer : Strecke nicht moeglich, fehlende %\nund erforderlicher Start-Ladezustand
+end
 deactivate menu
 
 main --> Benutzer : Programm-Ende
