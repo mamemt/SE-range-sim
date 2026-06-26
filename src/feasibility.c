@@ -3,17 +3,13 @@
 #include "feasibility.h"
 #include "json_importer.h"
 
-#define VEHICLE_DIR "data/vehicles/"
-#define ROUTE_DIR   "data/routes/"
-#define WEATHER_DIR "data/weather/"
-
 double calculate_feasibility(char* vehicle_file, char* route_file, char* weather_file, double battery_level) {
     char vehicle_path[256];
     char route_path[256];
     char weather_path[256];
-    snprintf(vehicle_path, sizeof(vehicle_path), "%s%s", VEHICLE_DIR, vehicle_file);
-    snprintf(route_path,   sizeof(route_path),   "%s%s", ROUTE_DIR,   route_file);
-    snprintf(weather_path, sizeof(weather_path), "%s%s", WEATHER_DIR, weather_file);
+    snprintf(vehicle_path, sizeof(vehicle_path), "%s", vehicle_file);
+    snprintf(route_path,   sizeof(route_path),   "%s", route_file);
+    snprintf(weather_path, sizeof(weather_path), "%s", weather_file);
 
     char vehicle_json[1000] = {0};
     char route_json[1000] = {0};
@@ -78,10 +74,8 @@ double calculate_feasibility(char* vehicle_file, char* route_file, char* weather
     //Verbrauchsberechnung
     double consumption_kwh_per_100km = base_consumption_kwh_per_100km * total_factor;
     double total_consumption_kwh = (consumption_kwh_per_100km * distance_km) / 100.0;
-    double remaining_battery_kwh = (battery_level / 100.0) * battery_capacity;
-    if (total_consumption_kwh > remaining_battery_kwh) {
-        return 0;
-    } else {
-        return 1;
-    }
+    double total_consumption_percent = (total_consumption_kwh / battery_capacity) * 100.0;
+    double remaining_battery_percent = battery_level - total_consumption_percent;
+
+    return remaining_battery_percent;
 }

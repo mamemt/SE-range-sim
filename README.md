@@ -69,7 +69,6 @@ Du hast 'warm, trocken und windstill' ausgewaehlt.
 Ladezustand eingeben (1-100): 80
 Ladezustand gespeichert: 80.0%
 
-Geschätzter Verbrauch: 14.90 kWh
 Die Strecke ist mit dem aktuellen Ladezustand möglich.
 Verbleibender Ladezustand nach der Strecke: 55.17%
 ```

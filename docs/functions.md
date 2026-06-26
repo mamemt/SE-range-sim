@@ -19,9 +19,33 @@ Wiederverwendbar für Fahrzeug-, Strecken- und Wetterprofile.
 ## Modul `feasibility`
 
 - `calculate_feasibility(vehicle_file, route_file, weather_file, battery_level)`
-  Liest Fahrzeug-, Strecken- und Wetterdaten aus JSON-Dateien und berechnet,
-  ob die Fahrt mit dem aktuellen Ladestand möglich ist.
-  Gibt `1` zurück wenn machbar, `0` wenn nicht.
+  Liest Fahrzeug-, Strecken- und Wetterdaten aus JSON-Dateien und berechnet den verbleibenden
+  Ladestand in Prozent nach der Fahrt. Positiver Rückgabewert = Fahrt möglich, negativer = nicht möglich.
+
+  Berechnung:
+
+  1. Wetterfaktor:
+     - `temperature_factor = 1 + (50 - temperature_celsius) * 0.0005`
+     - `wind_factor = 1 + (wind_speed_kmh * 0.0005)`
+     - `rain_factor = 1 + (precipitation_mm_per_h * 0.0005)`
+     - `weather_factor = temperature_factor * wind_factor * rain_factor`
+
+  2. Höhenmeterfaktor:
+     - `elevation_factor = 1 + (elevation_gain_m * 0.0001)`
+
+  3. Streckenfaktor (gewichteter Durchschnitt der Anteile):
+     - Stadt: 1.3, Landstraße: 0.9, Autobahn: 1.1
+     - `route_factor = (city_percent * 1.3 + rural_percent * 0.9 + highway_percent * 1.1) / 100`
+
+  4. Gesamtfaktor:
+     - `total_factor = weather_factor * elevation_factor * route_factor`
+
+  5. Verbrauch:
+     - `total_consumption_kwh = base_consumption_kwh_per_100km * total_factor * distance_km / 100`
+     - `total_consumption_percent = (total_consumption_kwh / battery_capacity_kwh) * 100`
+
+  6. Ergebnis:
+     - `remaining_battery_percent = battery_level - total_consumption_percent`
 
 ## Modul `battery`
 
